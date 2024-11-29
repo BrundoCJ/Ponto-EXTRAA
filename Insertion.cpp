@@ -1,33 +1,43 @@
 #include <stdio.h>
 
 int main() {
-    // vetor inicial para ordenação
-    int vetor[] = {10, 2, 14, 26, 8};  
-    int n = sizeof(vetor) /sizeof(vetor[0]);  // determina o tamanho do vetor automaticamente
+    // Definindo o vetor de nÃºmeros a ser ordenado
+    int vetor[] = {5, 3, 8, 4, 2};
+    
+    // Calculando o tamanho do vetor
+    int n = sizeof(vetor) / sizeof(vetor[0]);
 
-    printf("Vetor original: ");// imprime o vetor original antes da ordenação
-    for (int i = 0; i < n; i++) {
-        printf("%d ", vetor[i]);  // mostra cada elemento do vetor
-    	}
-    printf("\n");
+    // InÃ­cio do algoritmo de Insertion Sort
+    for (int i = 1; i < n; i++) {
+        // A chave Ã© o elemento que vamos inserir na posiÃ§Ã£o correta
+        int chave = vetor[i];
+        
+        // 'j' Ã© o Ã­ndice do elemento anterior Ã  chave
+        int j = i - 1;
 
-    for (int i = 0; i < n - 1; i++) {  // agoritmo Bubble Sort para ordenar o vetor em ordem crescente
-    for (int j = 0; j < n - 1 - i; j++) {// a cada pasagem, o maior elemento restante vai para o final do vetor
-         if (vetor[j] > vetor[j + 1]) {  // compara elementos adjacentes
-                                        // se o elemento atual for maior, troca de posição com o próximo
-            int temp = vetor[j];         // armazena o valor do elemento atual
-               vetor[j] = vetor[j + 1];     // move o proximo elemento para a posição atual
-               	 vetor[j + 1] = temp;         // coloca o valor armazenado na próxima posição
-         }
+        // A seguir, vamos mover os elementos da parte ordenada do vetor
+        // para a direita, caso sejam maiores que a chave
+        while (j >= 0 && vetor[j] > chave) {
+            // Mover o elemento para a direita
+            vetor[j + 1] = vetor[j];
+            
+            // Decrementar 'j' para comparar o prÃ³ximo elemento da parte ordenada
+            j--;
         }
-}
 
-    printf("Vetor ordenado: "); // iprime o vetor após a ordenação
-	for (int i = 0; i < n; i++) {
-        printf("%d ", vetor[i]);  // nostra cada elemento do vetor já ordenad
+        // Inserir a chave na posiÃ§Ã£o correta (onde j parou)
+        vetor[j + 1] = chave;
     }
+
+    // ApÃ³s a ordenaÃ§Ã£o, vamos imprimir o vetor ordenado
+    printf("Vetor ordenado: ");
+    
+    // LaÃ§o para imprimir os elementos do vetor
+    for (int i = 0; i < n; i++) {
+        printf("%d ", vetor[i]);
+    }
+    
     printf("\n");
 
-    return 0;  
+    return 0;
 }
-
